@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Indexador de Discos</title>
+  <link rel="icon" href="/static/favicon.svg" type="image/svg+xml" />
+  <link rel="stylesheet" href="/static/styles.css">
+</head>
+<body>
+  <div class="container">
+    <aside class="left-pane">
+      <h2>Discos escaneados</h2>
+      <div id="disks-list"></div>
+    </aside>
+
+    <main class="main-content">
+      <section class="section">
+        <h2>Escanear disco / carpeta</h2>
+        <div class="input-row">
+          <input id="disk-name" type="text" placeholder="Nombre del disco (ej. NAS01, BACKUP, C:)">
+          <input id="folder-path" type="text" placeholder="Ruta de carpeta a indexar (ej. /mnt/nas/docs)">
+          <button id="scan-btn">Iniciar escaneo</button>
+        </div>
+        <div class="progress-bar"><div class="progress"></div></div>
+      </section>
+
+      <section class="section">
+        <h2>Búsqueda avanzada</h2>
+        <div id="filters">
+          <input id="f-q" placeholder="Búsqueda global (cualquier campo)">
+          <input id="f-disk" placeholder="Disco exacto">
+          <input id="f-folder" placeholder="Carpeta contiene…">
+          <input id="f-name" placeholder="Nombre contiene…">
+          <input id="f-ext" placeholder="Ext (ej. pdf)">
+          <input id="f-smin" type="number" placeholder="Tamaño mín (bytes)">
+          <input id="f-smax" type="number" placeholder="Tamaño máx (bytes)">
+          <input id="f-cfrom" type="datetime-local">
+          <input id="f-cto" type="datetime-local">
+          <input id="f-mfrom" type="datetime-local">
+          <input id="f-mto" type="datetime-local">
+          <select id="f-order">
+            <option value="modified_at DESC">Orden: Modificado ↓</option>
+            <option value="modified_at ASC">Modificado ↑</option>
+            <option value="created_at DESC">Creado ↓</option>
+            <option value="created_at ASC">Creado ↑</option>
+            <option value="size DESC">Tamaño ↓</option>
+            <option value="size ASC">Tamaño ↑</option>
+            <option value="file_name ASC">Nombre ↑</option>
+            <option value="file_name DESC">Nombre ↓</option>
+            <option value="folder ASC">Carpeta ↑</option>
+            <option value="folder DESC">Carpeta ↓</option>
+          </select>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Disco</th>
+                <th>Carpeta</th>
+                <th>Fichero</th>
+                <th>Tamaño</th>
+                <th>Creado</th>
+                <th>Modificado</th>
+              </tr>
+            </thead>
+            <tbody id="results-body"></tbody>
+          </table>
+        </div>
+
+        <div id="pager" class="pager"></div>
+      </section>
+    </main>
+  </div>
+
+  <script src="/static/main.js" defer></script>
+</body>
+</html>
+

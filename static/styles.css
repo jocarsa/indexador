@@ -1,0 +1,195 @@
+:root{
+  /* Light Theme */
+  --bg:#f6f7fb;
+  --panel:#ffffff;
+  --card:#ffffff;
+  --muted:#6b7280;
+  --text:#111827;
+  --pri:#2563eb;
+  --pri-2:#3b82f6;
+  --ok:#16a34a;
+  --warn:#d97706;
+  --err:#dc2626;
+  --line:#e5e7eb;
+  --radius:16px;
+  --shadow: 0 6px 20px rgba(0,0,0,.07);
+}
+
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, "Noto Sans";
+  background: var(--bg);
+  color: var(--text);
+}
+
+.container{
+  display:grid;
+  grid-template-columns: 320px 1fr;
+  gap:20px;
+  padding:20px;
+  height:100vh;
+}
+
+.left-pane{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  overflow:auto;
+  box-shadow: var(--shadow);
+}
+
+.left-pane h2{
+  margin:0 0 12px 0;
+  font-size:18px;
+  letter-spacing:.5px;
+}
+
+.main-content{
+  background:var(--panel);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:18px;
+  overflow:auto;
+  box-shadow: var(--shadow);
+}
+
+.section{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  padding:16px;
+  margin-bottom:18px;
+}
+
+h2{
+  margin:0 0 12px 0;
+  font-size:20px;
+}
+
+.input-row{
+  display:grid;
+  grid-template-columns: 1fr 1fr auto;
+  gap:10px;
+  align-items:center;
+}
+
+input, select, button{
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--text);
+  border-radius:12px;
+  padding:10px 12px;
+  outline:none;
+}
+input::placeholder{color:#9ca3af}
+
+button{
+  background: linear-gradient(180deg, var(--pri) 0%, var(--pri-2) 100%);
+  border:0;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  transition: transform .05s ease;
+  box-shadow: 0 6px 20px rgba(59,130,246,.25);
+}
+button:active{ transform: translateY(1px) }
+button:disabled{ opacity:.6; cursor:not-allowed }
+
+.progress-bar{
+  width:100%;
+  height:10px;
+  background:#eef2ff;
+  border-radius:999px;
+  overflow:hidden;
+  border:1px solid var(--line);
+  margin-top:10px;
+}
+.progress{
+  height:100%;
+}
+.progress.indeterminate{
+  width:30%;
+  background: linear-gradient(90deg, var(--pri-2), #60a5fa, var(--pri-2));
+  animation: indet 1.2s linear infinite;
+}
+@keyframes indet{
+  0%{ transform: translateX(-30%) }
+  100%{ transform: translateX(300%) }
+}
+.progress.determinate{
+  background: linear-gradient(90deg, var(--pri), var(--pri-2));
+  transition: width .35s ease;
+}
+.progress-info{
+  margin-top:6px;
+  font-size:12px;
+  color: var(--muted);
+}
+
+.disk-card{
+  background: var(--card);
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:12px;
+  margin-bottom:10px;
+}
+.disk-header{
+  display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;
+}
+.disk-name{ font-weight:700 }
+.disk-status{
+  padding:4px 8px; border-radius:999px; font-size:12px; text-transform:uppercase; letter-spacing:.6px;
+  background:#eff6ff; color:#1e40af; border:1px solid #bfdbfe;
+}
+.disk-status.counting{ background:#fff7ed; color:#9a3412; border-color:#fed7aa }
+.disk-status.indexing{ background:#eef2ff; color:#3730a3; border-color:#c7d2fe }
+.disk-status.done{ background:#ecfdf5; color:#065f46; border-color:#a7f3d0 }
+.disk-status.error{ background:#fef2f2; color:#991b1b; border-color:#fecaca }
+
+.disk-meta{ color:#374151; font-size:13px; display:grid; gap:4px; }
+.disk-message{ color:#6b7280; margin-top:8px; font-size:12px }
+
+.table-wrap{
+  overflow:auto;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fff;
+}
+table{
+  width:100%;
+  border-collapse:separate;
+  border-spacing:0;
+  font-size:14px;
+}
+thead th{
+  position:sticky; top:0;
+  background:#f9fafb;
+  border-bottom:1px solid var(--line);
+  padding:10px;
+  text-align:left;
+  z-index:1;
+}
+tbody td{
+  border-bottom:1px solid var(--line);
+  padding:8px 10px;
+}
+tbody tr:hover{ background:#f3f4f6 }
+.mono{ font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
+.num{ text-align:right }
+
+#filters{
+  display:grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 110px 110px 1fr;
+  gap:8px;
+  margin-bottom:10px;
+}
+
+.pager{
+  display:flex; justify-content:space-between; align-items:center; gap:10px; margin-top:10px;
+}
+.pager-info{ color:#6b7280; font-size:13px }
+.pager-buttons button{ margin-left:6px }
+
